@@ -5,7 +5,7 @@ services:
     image: mysql:5.7
     container_name: mysql-container
     env_file:
-      - '.env'
+      - './lib_management/.env'
     environment:
       MYSQL_DATABASE: "${DB_NAME}"
       MYSQL_USER: "${DB_USER}"
@@ -22,7 +22,7 @@ services:
     container_name: django-docker-container
     restart: unless-stopped
     env_file:
-      - '.env'
+      - './lib_management/.env'
     ports:
       - "${PUBLIC_PORT}:${PORT}"
     networks:

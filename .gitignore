@@ -1,8 +1,5 @@
 .idea/
 
-# dotenv
-.env
-
 # virtualenv
 .venv
 venv/
