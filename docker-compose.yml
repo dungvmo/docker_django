@@ -1,18 +1,21 @@
 version: '3.1'
 
 services:
-  mysql_db:
+  db:
     image: mysql:5.7
     container_name: mysql-container
     env_file:
-      - './lib_management/.env'
+      - '.env'
     environment:
-      MYSQL_DATABASE: "${DB_NAME}"
-      MYSQL_USER: "${DB_USER}"
-      MYSQL_PASSWORD: "${DB_PASS}"
-      MYSQL_ROOT_PASSWORD: "${DB_PASS}"
+      MYSQL_ROOT_PASSWORD: 2431999
+      MYSQL_USER: api_user
+      MYSQL_PASSWORD: 2431999
+      MYSQL_DATABASE: mysql_db
     ports:
-      - "${DB_PORT}:${DB_PORT}"
+      - "3307:3306"
+    restart: always
+    volumes:
+      - ./data-volume:/var/lib/mysql
     networks:
       - api_network
 
@@ -24,11 +27,11 @@ services:
     env_file:
       - './lib_management/.env'
     ports:
-      - "${PUBLIC_PORT}:${PORT}"
+      - "9999:8000"
     networks:
       - api_network
     depends_on:
-      - mysql_db
+      - db
 
 networks:
   api_network:
