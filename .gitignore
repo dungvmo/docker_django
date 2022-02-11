@@ -4,6 +4,8 @@ data-volume/
 .venv
 venv/
 
+./debug.log
+
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt

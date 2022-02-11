@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
 import os
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', "")
+SECRET_KEY = os.getenv('SECRET_KEY',)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -68,6 +70,25 @@ TEMPLATES = [
     },
 ]
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '../debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
 WSGI_APPLICATION = 'lib_management.wsgi.application'
 
 # Database
@@ -76,11 +97,11 @@ WSGI_APPLICATION = 'lib_management.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get("DB_NAME", 'mysql_db'),
-        'USER': os.environ.get("DB_USER", "api_user"),
-        'PASSWORD': os.environ.get("DB_PASS", "2431999"),
-        'HOST': os.environ.get("DB_HOST", "db"),
-        'PORT': os.environ.get("DB_PORT", 3306),
+        'NAME': os.getenv("DB_NAME", 'mysql_db'),
+        'USER': os.getenv("DB_USER", "api_user"),
+        'PASSWORD': os.getenv("DB_PASS", "2431999"),
+        'HOST': os.getenv("DB_HOST", "127.0.0.1"),
+        'PORT': os.getenv("DB_PORT", 3307),
     }
 }
 
