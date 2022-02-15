@@ -57,7 +57,7 @@ ROOT_URLCONF = 'lib_management.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'app/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -89,7 +89,7 @@ LOGGING = {
     },
 }
 
-WSGI_APPLICATION = 'lib_management.wsgi.application'
+ASGI_APPLICATION = 'lib_management.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
