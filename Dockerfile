@@ -7,9 +7,9 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /opt/app
 
-COPY ./lib_management/requirements.txt ./requirements.txt
-RUN pip install --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
+COPY ./requirements.txt ./requirements.txt
+RUN pip3 install --upgrade pip
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 COPY ./lib_management ./
 

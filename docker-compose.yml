@@ -5,7 +5,7 @@ services:
     image: mysql:5.7
     container_name: mysql-container
     env_file:
-      - '.env'
+      - './lib_management/.env'
     environment:
       MYSQL_ROOT_PASSWORD: 2431999
       MYSQL_USER: api_user
@@ -27,7 +27,7 @@ services:
     env_file:
       - './lib_management/.env'
     ports:
-      - "9999:8000"
+      - "8080:8000"
     networks:
       - api_network
     depends_on:
